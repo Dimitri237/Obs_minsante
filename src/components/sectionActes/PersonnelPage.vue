@@ -6,8 +6,9 @@
 
                     <div class="col-lg-6 col-12 header-info">
                         <h1 class="titre">
-                            <span class="d-block text-dark ">Accéder à tous les informations concernant le <span class="text-primary">personnel</span></span>
-                            
+                            <span class="d-block text-dark ">Accéder à tous les informations concernant le <span
+                                    class="text-primary">personnel</span></span>
+
                         </h1>
                     </div>
                 </div>
@@ -54,8 +55,8 @@
                     <div style="margin: auto; text-align: center;" class="col-12">
                         <h2 class="mb-5 s_titre">Les <span>affectations</span> & <span>nominations</span></h2>
                     </div>
-                    <div style="width: 80%; margin: auto;" class="containActs col-lg-4 mb-4 col-12" v-for="acte in actes"
-                        v-bind:key="acte.id">
+                    <div style="width: 80%; margin: auto;" class="containActs col-lg-4 mb-4 col-12"
+                        v-for="acte in actes" v-bind:key="acte.id">
                         <div class="team-thumb d-flex align-items-center">
 
                             <div class="team-info">
@@ -67,8 +68,8 @@
                                 </div>
                                 <button id="downloadButton"
                                     style="background-color: transparent; font-weight: bold; border: none; margin-left: 10%;">
-                                    <a class="telechargement" style="color: #007A5E;" v-bind:href="acte.images[0].url"
-                                        download><i class="bi bi-cloud-download-fill"></i>Télécharger</a>
+                                    <a class="telechargement" style="color: #007A5E;" download><i
+                                            class="bi bi-cloud-download-fill"></i>Télécharger</a>
 
                                 </button>
 
@@ -93,8 +94,8 @@
                     <div style="margin: auto; text-align: center;" class="col-12">
                         <h2 class="mb-5 s_titre"><span>communication generale</span></h2>
                     </div>
-                    <div style="width: 80%; margin: auto;" class="containActs col-lg-4 mb-4 col-12" v-for="acte in actes"
-                        v-bind:key="acte.id">
+                    <div style="width: 80%; margin: auto;" class="containActs col-lg-4 mb-4 col-12"
+                        v-for="acte in actes" v-bind:key="acte.id">
                         <div class="team-thumb d-flex align-items-center">
 
                             <div class="team-info">
@@ -106,8 +107,8 @@
                                 </div>
                                 <button id="downloadButton"
                                     style="background-color: transparent; font-weight: bold; border: none; margin-left: 10%;">
-                                    <a class="telechargement" style="color: #007A5E;" v-bind:href="acte.images[0].url"
-                                        download><i class="bi bi-cloud-download-fill"></i>Télécharger</a>
+                                    <a class="telechargement" style="color: #007A5E;" download><i
+                                            class="bi bi-cloud-download-fill"></i>Télécharger</a>
 
                                 </button>
 
@@ -178,11 +179,11 @@ export default {
     methods: {
         async getActes() {
             try {
-                const response = await axios.get('https://minsante-6405bf7b686a.herokuapp.com/actes');
+                const response = await axios.get('http://localhost:3000/actes');
                 this.actes = response.data;
                 console.log(this.actes);
-                
-                
+
+
             } catch (error) {
                 console.error('Erreur lors de la récupération des actes:', error);
             }
