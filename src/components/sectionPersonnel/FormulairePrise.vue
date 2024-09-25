@@ -13,275 +13,352 @@
                 </div>
             </div>
         </header>
-        <section
-            style="background-color: transparent; width: 53%; margin: auto; margin-top: 50px; margin-bottom: 150px;"
+        <section style="width: 100%; margin-bottom: 150px; background-color: transparent;"
             class="team format section-padding">
-            <div class="container">
-                <div style=" display: block" class="row">
-
-                    <div style="margin: auto; text-align: center;" class="col-12">
-                        <h2 class="mb-5 s_titre">Fiche de prise de service</h2>
-                    </div>
-                    <form action="">
-                        <div class="first">
-                            <div class="int1">
-                                <label for="">Noms / <span>Names</span></label>
-                                <div style="display: flex; justify-content: space-between; width: 100%;">
-                                    <input placeholder="Noms" style="width: 48%;" type="text" name="" id="">
-                                    <input placeholder="Prenoms" style="width: 48%;" type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="int1 display" style="display: flex; justify-content: space-between;">
-                                <div style="width: 48%;">
-                                    <label for="">Sexe / <span>Sex</span></label>
-                                    <input type="text" name="" id="">
-                                </div>
-                                <div style="width: 48%;">
-                                    <label for="">Situation Matrimoniale / <span>Mat status</span></label>
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="int1">
-                                <label for="">Region d'origine / <span>The region you are from</span></label>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div class="int1">
-                                <label for="">Date et lieu de naissance / <span>Date and place of birth</span></label>
-                                <div style="width: 100%; display: flex; justify-content: space-between;">
-                                    <input style="width: 48%!important;" type="date" name="" id="">
-                                    <label for="" style="width: 4%; text-align: center;">a</label>
-                                    <input style="width: 48%;" type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="int1">
-                                <label for="">N° telephone / <span>phone number</span></label>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div class="int1">
-                                <label for="">E-mail address</label>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div class="int1" style="display: flex; justify-content: space-between;">
-                                <div class="play">
-                                    <label for="">Corps / <span>Corps</span></label>
-                                    <input type="text" name="" id="">
-                                </div>
-                                <div class="play">
-                                    <label for="">Specialite / <span class="hide">Speciality</span></label>
-                                    <input type="text" name="" id="">
-                                </div>
-                                <div class="play">
-                                    <label for="">Grade / <span>Grade</span></label>
-                                    <input type="text" name="" id="">
-                                </div>
-                            </div>
-                            <div class="int1">
-                                <label for="">Poste de travail anterieur / <span>Previous working station</span></label>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div class="int1" style="display: flex; justify-content: space-between;">
-                                <div style="width: 48%;">
-                                    <label for="">N° Matricule / <span>Serve N°</span></label>
-                                    <input type="text" name="" id="">
-                                </div>
-                                <div style="width: 48%;">
-                                    <label for="">Date de recrutement / <span class="hide">Date of recrutment</span></label>
-                                    <input style="width: 100%!important;" type="date" name="" id="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="second">
-                            <div class="sec">
-                                <label>Poste d'affectation sollicites par<span
-                                        style="padding-left: 15px; font-weight: bold; font-size: 17px;">1</span></label>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div class="sec">
-                                <label>Ordre de preference<span
-                                        style="padding-left: 15px; font-weight: bold; font-size: 17px;">2</span></label>
-                                <input type="text" name="" id="">
-                            </div>
-                            <div class="sec">
-                                <label>Duty stations requested, by order of preference<span
-                                        style="padding-left: 15px; font-weight: bold; font-size: 17px;">3</span></label>
-                                <input type="text" name="" id="">
-                            </div>
-                        </div>
-                        <div class="third">
-                            <h3>Pieces fournient:</h3>
-                            <ul>
-                                <li><label for="">Copie certifiee conforme du diplome de proffessionnel/ <span>true
-                                            certified copy of
-                                            diploma </span></label><input type="checkbox" name="" id=""></li>
-                                <li><label for="">Curriculum vitae</label><input type="checkbox" name="" id=""></li>
-                                <li><label for="">Copie de la Carte Nationale d'Identité/<span>Copy of National Identity
-                                            Card </span></label><input type="checkbox" name="" id=""></li>
-                                <li><label for="">Deux (02) photos 4x4 en couleur/<span>Two Colors photos 4x4
-                                        </span></label><input type="checkbox" name="" id=""></li>
-                                <li><label for="">Deux (02) Chemises cartonnées/<span>Two (02)Cardboard files
-                                        </span></label><input type="checkbox" name="" id=""></li>
-                                <li><label for=""> Copie Certifiée conforme Acte de Naissance/<span> certified true copy
-                                            of birth certificate
-                                        </span></label><input type="checkbox" name="" id=""></li>
-                                <li><label for="">Copie Certifiée Conforme Acte de Mariage/<span>certified true copy of
-                                            mariage certificate (if applicable)
-                                        </span></label><input type="checkbox" name="" id=""></li>
-                                <li><label for="">Certificat de domicile de l'époux/<span>residence certificate of the
-                                            spouse (if applicable)
-                                        </span></label><input type="checkbox" name="" id=""></li>
-                            </ul>
-                        </div>
-                        <div class="form_sub" style="margin: auto; width: 25%;">
-                            <input type="submit" value="Soumettre" name="" id="">
-                        </div>
-
-                    </form>
-                </div>
+            <div class="search">
+                <input placeholder="Entre votre matricule / Nom" type="text" name="" id=""><i class="fa fa-search"></i>
             </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Sex</th>
+                        <th>Date de soumission</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dupont</td>
+                        <td>Jean</td>
+                        <td>Masculin</td>
+                        <td>25-09-2024</td>
+                        <td style="background-color: #319800; color: white; font-weight: bold; text-align: center;">Approuvé</td>
+                    </tr>
+                    <tr>
+                        <td>Martin</td>
+                        <td>Claire</td>
+                        <td>Inactif</td>
+                        <td>25-09-2024</td>
+                        <td style="background-color: rgba(0, 0, 0, 0.4); color: white; font-weight: bold; text-align: center;">En attente</td>
+                    </tr>
+                    <tr>
+                        <td>Moreau</td>
+                        <td>Philippe</td>
+                        <td>Actif</td>
+                        <td>25-09-2024</td>
+                        <td style="background-color: #F90000; color: white; font-weight: bold; text-align: center;">Rejetté</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <div class="container">
+                <h1 class="title">Prise Service</h1>
+                <form @submit.prevent="createPriseServiceRepriseService" class="form">
+                    <div class="form-group">
+                        <label for="id_perso" class="label">Matricule:</label>
+                        <input type="text" id="id_perso" v-model="priseServiceRepriseService.id_perso" class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nom_prenom" class="label">Nom Prénom:</label>
+                        <input type="text" id="nom_prenom" v-model="priseServiceRepriseService.nom_prenom"
+                            class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="sex" class="label">Sex:</label>
+                        <select id="sex" v-model="priseServiceRepriseService.sex" class="select">
+                            <option value="">Select</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="situation_matri" class="label">Situation Matrimoniale:</label>
+                        <input type="text" id="situation_matri" v-model="priseServiceRepriseService.situation_matri"
+                            class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="region_origine" class="label">Région d'Origine:</label>
+                        <input type="text" id="region_origine" v-model="priseServiceRepriseService.region_origine"
+                            class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date_naissance" class="label">Date de Naissance:</label>
+                        <input type="date" id="date_naissance" v-model="priseServiceRepriseService.date_naissance"
+                            class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="lieu_naissance" class="label">Lieu de Naissance:</label>
+                        <input type="text" id="lieu_naissance" v-model="priseServiceRepriseService.lieu_naissance"
+                            class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone" class="label">Téléphone:</label>
+                        <input type="tel" id="telephone" v-model="priseServiceRepriseService.telephone" class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="corp" class="label">Corp:</label>
+                        <input type="text" id="corp" v-model="priseServiceRepriseService.corp" class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="grade" class="label">Grade:</label>
+                        <input type="text" id="grade" v-model="priseServiceRepriseService.grade" class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="specialite" class="label">Spécialité:</label>
+                        <input type="text" id="specialite" v-model="priseServiceRepriseService.specialite"
+                            class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="type_recrutement" class="label">Type de Recrutement:</label>
+                        <input type="text" id="type_recrutement" v-model="priseServiceRepriseService.type_recrutement"
+                            class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="justificatif" class="label">Justificatif:</label>
+                        <input type="text" id="justificatif" v-model="priseServiceRepriseService.justificatif"
+                            class="input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="status" class="label">Status:</label>
+                        <input type="text" id="status" v-model="priseServiceRepriseService.status" class="input" />
+                    </div>
+                    <button type="submit" class="button">Envoyer</button>
+                </form>
+            </div> -->
         </section>
 
     </main>
 </template>
 <script>
+import axios from 'axios';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable'; // Assurez-vous d'installer cette dépendance
+
+export default {
+    data() {
+        return {
+            priseServiceRepriseService: {
+                id_perso: '',
+                nom_prenom: '',
+                sex: '',
+                situation_matri: '',
+                region_origine: '',
+                date_naissance: '',
+                lieu_naissance: '',
+                telephone: '',
+                corp: '',
+                grade: '',
+                specialite: '',
+                type_recrutement: '',
+                justificatif: '',
+                status: ''
+            }
+        };
+    },
+    methods: {
+        validateForm() {
+            return this.priseServiceRepriseService.id_perso && this.priseServiceRepriseService.nom_prenom;
+        },
+        createPriseServiceRepriseService() {
+            if (!this.validateForm()) {
+                alert('Veuillez remplir tous les champs requis.');
+                return;
+            }
+            axios.post('http://localhost:3001/priseService_repriseService', this.priseServiceRepriseService)
+                .then(response => {
+                    console.log(response);
+                    alert('Prise Service Reprise Service créée avec succès!');
+                    this.generatePdf();
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert('Erreur lors de la création de la Prise Service Reprise Service');
+                });
+        },
+        generatePdf() {
+            const doc = new jsPDF();
+            const formData = this.priseServiceRepriseService;
+
+            // Styles du titre
+            doc.setFont("Helvetica", "bold");
+            doc.setTextColor(0, 122, 94);
+            doc.setFontSize(24);
+            const title = 'Fiche de Prise de Service';
+            const titleWidth = doc.getTextWidth(title);
+            doc.text(title, (doc.internal.pageSize.getWidth() / 2) - (titleWidth / 2), 30); // Centre le titre
+
+            // Ligne de séparation
+            doc.setDrawColor(0, 122, 94);
+            doc.line(10, 35, 200, 35);
+
+            // Mappage des clés à des étiquettes personnalisées
+            const labelMapping = {
+                nom_prenom: "Nom & Prénom",
+                id_perso: "Matricule",
+                situation_matri: "Situation Matrimoniale",
+                region_origine: "Région d'Origine",
+                date_naissance: "Date de Naissance",
+                lieu_naissance: "Lieu de Naissance",
+                telephone: "Téléphone",
+                specialite: "Spécialité",
+                type_recrutement: "Type de Recrutement"
+                // Ajoutez d'autres mappages selon vos besoins
+            };
+
+            // Préparation des données pour le tableau
+            const tableData = Object.entries(formData).map(([key, value]) => {
+                const label = labelMapping[key] || key.replace(/_/g, ' ').charAt(0).toUpperCase() + key.slice(1);
+                return { label, value };
+            });
+
+            // Ajouter le tableau
+            doc.autoTable({
+                head: [['Champ', 'Valeur']],
+                body: tableData.map(item => [item.label, item.value]),
+                startY: 40,
+                theme: 'grid',
+                styles: { cellPadding: 2, fontSize: 12, minCellHeight: 5, halign: 'center' },
+                headStyles: { fillColor: [0, 122, 94], textColor: [255, 255, 255], fontSize: 14, fontStyle: 'bold' },
+                bodyStyles: { fillColor: [255, 255, 255], textColor: [0, 0, 0] },
+                alternateRowStyles: { fillColor: [240, 240, 240] },
+                margin: { top: 20 },
+                columnStyles: { 0: { cellWidth: 81, halign: 'left' }, 1: { cellWidth: 100, halign: 'center' } }
+            });
+
+            // Ligne de séparation avant le pied de page
+            const footerStartY = doc.autoTable.previous.finalY + 30;
+            doc.setDrawColor(0, 122, 94);
+            doc.line(10, footerStartY, 200, footerStartY);
+
+            // Ajouter les informations dans le pied de page
+            const footerY = footerStartY + 15;
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Matricule: ${formData.id_perso}`, 10, footerY + 10);
+            doc.text(`Nom & Prénom: ${formData.nom_prenom}`, 10, footerY);
+            doc.rect(150, footerY - 3, 40, 40); // Espace pour la photo
+            doc.text('photo 4*4', 152, footerY + 10);
+
+            // Ajouter "OBS-MINSANTE" au pied de page
+            doc.text('OBS-MINSANTE', (doc.internal.pageSize.getWidth() / 2), footerY + 60, { align: 'center' });
+
+            const pdfBlob = doc.output('blob');
+            const url = URL.createObjectURL(pdfBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'prise_service_reprise_service.pdf';
+            a.click();
+        }
+
+    }
+};
 </script>
 <style scoped>
-.first .int1 label {
-    width: 97%;
-    font-size: 20px;
-    text-align: left;
-}
-
-.third {
-    margin-top: 30px !important;
+.search{
+    margin-bottom: 10px;
     width: 100%;
-}
-
-.third span {
-    font-style: italic;
-    font-weight: 500;
-}
-
-.third li {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    text-align: left;
-    list-style: none;
 }
-
-.third label {
-    color: rgba(0, 0, 0, 0.842);
-    font-weight: bold;
-}
-
-.second {
-    margin-top: 40px;
-}
-
-.second .sec label {
-    width: 50%;
-    font-size: 16px;
-    color: rgba(0, 0, 0, 1);
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-    font-weight: 300;
-}
-
-form {
-    /* background-color: red; */
-    width: 97%;
-    margin: auto;
-}
-
-.second .sec {
-    margin-top: 7px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.second .sec input {
-    width: 48%;
-    background-color: white;
-    border: none;
-    border: none;
-    border-radius: 5px;
-}
-
-input[type="date"] {
-    width: 40% !important;
-    height: 35px;
-    text-align: center;
-    background-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-input[type="submit"] {
-    border: 1px solid white;
-    color: white;
-    font-size: 25px;
-    padding: 10px;
-    margin-top: 30px;
-    background-color: transparent;
-    width: 100%;
-}
-
-input[type="checkbox"] {
-    width: 2%;
-}
-
-
-.first .int1 span {
-    font-size: 18px;
-    font-style: italic;
-}
-
-.first .int2 span {
-    font-size: 18px;
-    font-style: italic;
-}
-
-.first .int1 input {
-    width: 100%;
-    height: 35px;
-    margin-top: 5px;
-    background-color: transparent;
-    border: none;
-    background-color: white;
-    border-radius: 5px;
+.search input{
+    background-color: #FFFAFA;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius:  5px;
     outline: none;
-}
-
-.first label {
-    font-weight: bold;
-}
-
-.first .int1 {
-    display: block;
-    width: 100%;
-}
-
-.first .int2 {
-    width: 100%;
-}
-
-.first .int2 label {
-    width: 100%;
-    font-size: 20px;
-    text-align: left;
-}
-
-.team {
-    background-color: #007A5E !important;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
-
-.int1,
-.int2 {
-    margin-top: 10px;
-}
-
-.play {
+    height: 25px;
+    font-size: 12px;
     width: 30%;
+}
+.search i{
+    background-color: transparent;
+    font-size: 20px;
+    margin-left: 5px;
+    color: rgba(0, 0, 0, 0.4);
+}
+table {
+    width: 100%;
+    margin: auto;
+    background-color: #D9D9D9;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border: 11px solid #D9D9D9;
+}
+
+td {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 6px;
+    border: 11px solid #D9D9D9;
+    /* border-bottom: 10px solid red; */
+}
+
+tr {
+    background-color: #E4E4E4;
+}
+
+td:hover {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 600px) {
+
+    th,
+    td {
+        font-size: 14px;
+    }
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.input,
+.select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #3e8e41;
 }
 </style>

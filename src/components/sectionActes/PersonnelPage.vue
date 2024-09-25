@@ -48,78 +48,32 @@
                 </div>
             </div>
         </section>
-        <section class="team section-padding">
+        <section style="margin-bottom: 200px;" class="team section-padding">
             <div class="container">
                 <div style=" display: block" class="row">
-
                     <div style="margin: auto; text-align: center;" class="col-12">
                         <h2 class="mb-5 s_titre">Les <span>affectations</span> & <span>nominations</span></h2>
                     </div>
                     <div style="width: 80%; margin: auto;" class="containActs col-lg-4 mb-4 col-12"
                         v-for="acte in actes" v-bind:key="acte.id">
                         <div class="team-thumb d-flex align-items-center">
-
                             <div class="team-info">
                                 <div style="width: 90%;">
-                                    <h5 class="mb-0 s_text">{{ acte.signataire }}
-                                    </h5>
-                                    <strong class="text-muted">{{ acte.titre }}</strong>
-
+                                    <h5 class="mb-0 s_text">{{ acte.categorie }} numero <span style="color: red;">{{
+                                        acte.numero }}</span> portante {{ acte.type }}</h5>
+                                    <h5 style="color: rgba(0, 0, 0, 0.5);" class="mb-0 s_text">Signe par <span
+                                            style="color: #007A5E;">{{ acte.signataire }}</span></h5>
                                 </div>
                                 <button id="downloadButton"
-                                    style="background-color: transparent; font-weight: bold; border: none; margin-left: 10%;">
-                                    <a class="telechargement" style="color: #007A5E;" download><i
-                                            class="bi bi-cloud-download-fill"></i>Télécharger</a>
-
+                                    style="background-color: transparent; font-weight: bold; border: none; margin-left: 10%;"
+                                    @click="downloadPDF(acte.id)">
+                                    <i class="bi bi-cloud-download-fill"></i>Télécharger
                                 </button>
-
-
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn custom-modal-btn" data-bs-toggle="modal"
-                                    data-bs-target="#don" @click="showModal(acte.id)">
-                                    <a href=""></a>
-                                    <i class="bi-plus-circle-fill"></i>
+                                    data-bs-target="#don" @click="showModal(acte)">
+                                    <i class="bi bi-plus-circle-fill"></i>
                                 </button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section style="margin-bottom: 200px;" class="team section-padding">
-            <div class="container">
-                <div style=" display: block" class="row">
-
-                    <div style="margin: auto; text-align: center;" class="col-12">
-                        <h2 class="mb-5 s_titre"><span>communication generale</span></h2>
-                    </div>
-                    <div style="width: 80%; margin: auto;" class="containActs col-lg-4 mb-4 col-12"
-                        v-for="acte in actes" v-bind:key="acte.id">
-                        <div class="team-thumb d-flex align-items-center">
-
-                            <div class="team-info">
-                                <div style="width: 90%;">
-                                    <h5 class="mb-0 s_text">{{ acte.signataire }}
-                                    </h5>
-                                    <strong class="text-muted">{{ acte.titre }}</strong>
-
-                                </div>
-                                <button id="downloadButton"
-                                    style="background-color: transparent; font-weight: bold; border: none; margin-left: 10%;">
-                                    <a class="telechargement" style="color: #007A5E;" download><i
-                                            class="bi bi-cloud-download-fill"></i>Télécharger</a>
-
-                                </button>
-
-
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn custom-modal-btn" data-bs-toggle="modal"
-                                    data-bs-target="#don" @click="showModal(acte.id)">
-                                    <a href=""></a>
-                                    <i class="bi-plus-circle-fill"></i>
-                                </button>
-
                             </div>
                         </div>
                     </div>
@@ -127,40 +81,28 @@
             </div>
         </section>
     </main>
-    <!-- <div class="modal fade" id="don" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0">
-                <div class="modal-header flex-column">
-                    <h3 class="modal-title" id="exampleModalLabel">{{ acte.signataire }}</h3>
-
-                    <h6 class="text-muted">{{ acte.poste }}</h6>
-
+    <div class="modal fade" id="don" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">{{ selectedActe.categorie }} Détails</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <div class="modal-body">
-                    <h5 class="mb-4">{{ acte.titre }}</h5>
-
-                    <div class="row mb-4">
-                        <div style="width: 100%;">
-                            <p>{{ acte.descript }}</p>
-                        </div>
-                    </div>
-
-                    <ul class="social-icon">
-                        <li class="me-3"><strong>Where to find?</strong></li>
-
-                        <li><a href="#" class="social-icon-link bi-youtube"></a></li>
-
-                        <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-
-                        <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-                    </ul>
+                    <p><strong>Le:</strong> {{ selectedActe.create_at }}</p>
+                    <p><strong>Numéro:</strong> {{ selectedActe.numero }}</p>
+                    <p><strong>Titre:</strong> {{ selectedActe.titre }}</p>
+                    <p><strong>Type:</strong> {{ selectedActe.type }}</p>
+                    <p><strong>signe le:</strong> {{ selectedActe.signature_date }}</p>
+                    <p><strong>Signataire:</strong> {{ selectedActe.signataire }}</p>
+                    <p><strong>Description:</strong> {{ selectedActe.description }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                 </div>
             </div>
-
         </div>
-    </div> -->
+    </div>
 </template>
 <script>
 import axios from 'axios';
@@ -168,6 +110,8 @@ export default {
     data() {
         return {
             actes: [],
+            modalVisible: false,
+            selectedActe: {},
         }
 
     },
@@ -179,7 +123,7 @@ export default {
     methods: {
         async getActes() {
             try {
-                const response = await axios.get('http://localhost:3000/actes');
+                const response = await axios.get('http://localhost:3001/actes');
                 this.actes = response.data;
                 console.log(this.actes);
 
@@ -187,6 +131,9 @@ export default {
             } catch (error) {
                 console.error('Erreur lors de la récupération des actes:', error);
             }
+        },
+        showModal(acte) {
+            this.selectedActe = acte; // Met à jour l'acte sélectionné
         },
         formatDate(dateString) {
             if (!dateString) {
@@ -204,6 +151,31 @@ export default {
 
             return `${day}/${month}/${year}`;
         },
+        async downloadPDF(id) {
+            console.log('ID de l\'acte:', id); // Vérifiez que l'ID est correct
+            try {
+                // Appel API pour obtenir le PDF
+                const pdfResponse = await axios.get(`http://localhost:3001/api/pdf/${id}`, {
+                    responseType: 'blob',
+                });
+
+                // Utilisez le nom de fichier défini par le backend
+                const contentDisposition = pdfResponse.headers['content-disposition'];
+                const fileName = contentDisposition
+                    ? contentDisposition.split('filename=')[1].replace(/"/g, '') // Récupérez le nom du fichier
+                    : `${id}.pdf`; // Valeur par défaut si pas de nom
+
+                const url = window.URL.createObjectURL(new Blob([pdfResponse.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', fileName); // Utilisez le nom du fichier du backend
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+            } catch (error) {
+                console.error('Erreur lors du téléchargement du PDF', error);
+            }
+        }
     },
 }
 </script>
