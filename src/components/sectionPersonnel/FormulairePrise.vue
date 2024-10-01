@@ -27,7 +27,13 @@
                     <h3>{{ priseService.sex }}</h3>
                     <h3>{{ priseService.specialite }}</h3>
                     <h3>{{ priseService.grade }}</h3>
-                    <button>{{ priseService.status }}</button>
+                    <button :style="{
+                        backgroundColor: priseService.status === 'Approuvé' ? '#007A5E' :
+                            priseService.status === 'Rejeté' ? 'red' :
+                                'rgba(0, 0, 0, 0.3)'
+                    }">
+                        {{ priseService.status }}
+                    </button>
                 </div>
                 <!-- <h4>Cette requete a ete envoyé le 25-09-2024</h4> -->
             </div>
@@ -167,7 +173,10 @@
                     </div>
                     <div class="form-group" style="display: flex; justify-content: space-between;">
                         <div></div>
-                        <input class="button" type="submit" value="Soumettre">
+                        <button class="button" type="submit">
+                            <span class="loading-indicator" v-if="loading"></span>
+                            <span v-else>Soumettre</span>
+                        </button>
 
                     </div>
                 </div>
@@ -201,6 +210,7 @@ export default {
                 justificatif: '',
                 status: 'En attente'
             },
+            loading: false,
             priseServices: [],
         };
     },
@@ -236,14 +246,19 @@ export default {
                 alert('Veuillez remplir tous les champs requis.');
                 return;
             }
+            this.loading = true;
             axios.post('https://minsante-api-636b67309a26.herokuapp.com/priseService_repriseService', this.priseServiceRepriseService)
                 .then(response => {
                     console.log(response);
                     alert('Prise Service Reprise Service créée avec succès!');
+                    this.loading = false;
                     this.generatePdf();
+                    window.location.reload();
+
                 })
                 .catch(error => {
                     console.error(error);
+                    this.loading = false;
                     alert('Erreur lors de la création de la Prise Service Reprise Service');
                 });
         },
@@ -251,19 +266,58 @@ export default {
             const doc = new jsPDF();
             const formData = this.priseServiceRepriseService;
 
-            // Styles du titre
+            this.addHeader(doc);
+            this.addTitle(doc);
+            this.addTable(doc, formData);
+            this.addFooter(doc, formData);
+            this.downloadPdf(doc);
+        },
+
+        addHeader(doc) {
+            const headerText = [
+                { fr: "REPUBLIQUE DU CAMEROUN", en: "REPUBLIC OF CAMEROON" },
+                { fr: "Paix-Travail-Patrie", en: "Peace-Work-Fatherland" },
+                { fr: "MINISTERE DE LA SANTE PUBLIQUE", en: "MINISTRY OF PUBLIC HEALTH" },
+                { fr: "SECRETARIAT GENERAL", en: "GENERAL SECRETARIAT" },
+                { fr: "DIRECTION DES RESSOURCES HUMAINES", en: "DIRECTORATE OF HUMAN RESOURCES" },
+                { fr: "SOUS-DIRECTION DU PERSONNEL", en: "SUB-DIRECTORATE OF PERSONNEL" }
+            ];
+
+            const pageWidth = doc.internal.pageSize.getWidth();
+
+            headerText.forEach((line, index) => {
+                doc.setFontSize(9);
+                doc.setTextColor(0, 0, 0); // Couleur du texte
+
+                // Position Y pour chaque ligne
+                const centerY = 8 + (index * 10);
+
+                // Largeur du texte en anglais
+                const enTextWidth = doc.getTextWidth(line.en);
+
+                // Texte français aligné à gauche
+                doc.text(line.fr, 10, centerY); // Position X fixe pour le texte français
+
+                // Texte anglais aligné à droite
+                doc.text(line.en, pageWidth - enTextWidth - 10, centerY); // Position X fixe pour le texte anglais
+            });
+        },
+
+        addTitle(doc) {
+            const title = 'FICHE DE PRISE DE SERVICE';
             doc.setFont("Helvetica", "bold");
-            doc.setTextColor(0, 122, 94);
-            doc.setFontSize(24);
-            const title = 'Fiche de Prise de Service';
+            doc.setTextColor(0, 0, 0);
+            doc.setFontSize(18);
             const titleWidth = doc.getTextWidth(title);
-            doc.text(title, (doc.internal.pageSize.getWidth() / 2) - (titleWidth / 2), 30); // Centre le titre
 
-            // Ligne de séparation
-            doc.setDrawColor(0, 122, 94);
-            doc.line(10, 35, 200, 35);
+            // Changer la coordonnée Y pour abaisser le titre
+            const titleYPosition = 75; // Ajustez cette valeur selon vos besoins
+            doc.text(title, (doc.internal.pageSize.getWidth() / 2) - (titleWidth / 2), titleYPosition); // Centré
+            doc.setDrawColor(0, 0, 0);
+            // doc.line(10, titleYPosition + 5, doc.internal.pageSize.getWidth() - 10, titleYPosition + 5); 
+        },
 
-            // Mappage des clés à des étiquettes personnalisées
+        addTable(doc, formData) {
             const labelMapping = {
                 nom_prenom: "Nom & Prénom",
                 id_perso: "Matricule",
@@ -274,46 +328,46 @@ export default {
                 telephone: "Téléphone",
                 specialite: "Spécialité",
                 type_recrutement: "Type de Recrutement"
-                // Ajoutez d'autres mappages selon vos besoins
             };
 
-            // Préparation des données pour le tableau
             const tableData = Object.entries(formData).map(([key, value]) => {
                 const label = labelMapping[key] || key.replace(/_/g, ' ').charAt(0).toUpperCase() + key.slice(1);
-                return { label, value };
+                return { label, value: value || 'N/A' }; // Gestion des valeurs vides
             });
 
-            // Ajouter le tableau
+            // Configuration de la largeur du tableau
+            const tableWidth = 200; // Ajustez cette valeur selon vos besoins
+            const marginLeft = (doc.internal.pageSize.getWidth() - tableWidth) / 2; // Calcul de la marge gauche
+
             doc.autoTable({
-                head: [['Champ', 'Valeur']],
+                // head: [['Champ', 'Valeur']],
                 body: tableData.map(item => [item.label, item.value]),
-                startY: 40,
+                startY: 82, // Ajusté pour que le tableau commence plus bas
                 theme: 'grid',
-                styles: { cellPadding: 2, fontSize: 12, minCellHeight: 5, halign: 'center' },
-                headStyles: { fillColor: [0, 122, 94], textColor: [255, 255, 255], fontSize: 14, fontStyle: 'bold' },
+                styles: { cellPadding: 2, fontSize: 10, minCellHeight: 3, halign: 'center' },
+                // headStyles: { fillColor: [0, 0, 0], textColor: [255, 255, 255], fontSize: 14, fontStyle: 'bold' },
                 bodyStyles: { fillColor: [255, 255, 255], textColor: [0, 0, 0] },
                 alternateRowStyles: { fillColor: [240, 240, 240] },
-                margin: { top: 20 },
-                columnStyles: { 0: { cellWidth: 81, halign: 'left' }, 1: { cellWidth: 100, halign: 'center' } }
+                margin: { top: 20, left: marginLeft, right: marginLeft }, // Marges gauche et droite
+                columnStyles: { 0: { cellWidth: 100, halign: 'left' }, 1: { cellWidth: 100, halign: 'center' } }
             });
+        },
 
-            // Ligne de séparation avant le pied de page
-            const footerStartY = doc.autoTable.previous.finalY + 30;
-            doc.setDrawColor(0, 122, 94);
-            doc.line(10, footerStartY, 200, footerStartY);
-
-            // Ajouter les informations dans le pied de page
-            const footerY = footerStartY + 15;
+        addFooter(doc, formData) {
+            const footerStartY = doc.autoTable.previous.finalY + 10;
+            doc.setDrawColor(0, 0, 0);
+            doc.line(10, footerStartY, doc.internal.pageSize.getWidth() - 10, footerStartY);
+            const footerY = footerStartY + 5;
             doc.setFontSize(12);
             doc.setTextColor(0, 0, 0);
             doc.text(`Matricule: ${formData.id_perso}`, 10, footerY + 10);
             doc.text(`Nom & Prénom: ${formData.nom_prenom}`, 10, footerY);
-            doc.rect(150, footerY - 3, 40, 40); // Espace pour la photo
+            doc.rect(150, footerY - 3, 40, 40); // Espace réservé pour la photo
             doc.text('photo 4*4', 152, footerY + 10);
+            doc.text('OBS-MINSANTE', (doc.internal.pageSize.getWidth() / 2), footerY + 60, { align: 'center' }); // Centré
+        },
 
-            // Ajouter "OBS-MINSANTE" au pied de page
-            doc.text('OBS-MINSANTE', (doc.internal.pageSize.getWidth() / 2), footerY + 60, { align: 'center' });
-
+        downloadPdf(doc) {
             const pdfBlob = doc.output('blob');
             const url = URL.createObjectURL(pdfBlob);
             const a = document.createElement('a');
@@ -321,7 +375,6 @@ export default {
             a.download = 'prise_service_reprise_service.pdf';
             a.click();
         }
-
     }
 };
 </script>
@@ -350,6 +403,29 @@ export default {
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.loading-indicator::after {
+    content: "";
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 3px solid #06283D;
+    border-top-color: white;
+    border-bottom-color: white;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-indicator {
+    display: flex;
+    justify-content: center;
 }
 
 .insideAll {
