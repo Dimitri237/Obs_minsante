@@ -149,7 +149,7 @@ export default {
         
         async getActes() {
             try {
-                const response = await axios.get('https://localhost:3001/actes');
+                const response = await axios.get('https://localhost:3000/actes');
                 this.actes = response.data;
                 console.log(response.data);
                 

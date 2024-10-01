@@ -123,7 +123,7 @@ export default {
     methods: {
         async getActes() {
             try {
-                const response = await axios.get('http://localhost:3001/actes');
+                const response = await axios.get('https://minsante-api-636b67309a26.herokuapp.com/actes');
                 this.actes = response.data;
                 console.log(this.actes);
 
@@ -134,6 +134,7 @@ export default {
         },
         showModal(acte) {
             this.selectedActe = acte; // Met à jour l'acte sélectionné
+            
         },
         formatDate(dateString) {
             if (!dateString) {
@@ -155,7 +156,7 @@ export default {
             console.log('ID de l\'acte:', id); // Vérifiez que l'ID est correct
             try {
                 // Appel API pour obtenir le PDF
-                const pdfResponse = await axios.get(`http://localhost:3001/api/pdf/${id}`, {
+                const pdfResponse = await axios.get(`https://minsante-api-636b67309a26.herokuapp.com/api/pdf/${id}`, {
                     responseType: 'blob',
                 });
 

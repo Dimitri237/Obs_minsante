@@ -125,7 +125,7 @@ export default {
     methods: {
         async getStructure() {
             try {
-                const response = await axios.get('http://localhost:3001/formation_sanitaire'); // Appeler l'API GET
+                const response = await axios.get('https://minsante-api-636b67309a26.herokuapp.com/formation_sanitaire'); // Appeler l'API GET
                 this.formation_sanitaire = response.data;
                 console.log(response.data);
             } catch (error) {
@@ -133,7 +133,7 @@ export default {
             }
         },
         submitForm() {
-            axios.post('http://localhost:3001/mise_stage', {
+            axios.post('https://minsante-api-636b67309a26.herokuapp.com/mise_stage', {
                 id_perso: this.id_perso,
                 nom_prenom: this.nom_prenom,
                 sex: this.sex,
