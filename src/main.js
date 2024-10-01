@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+import * as lucideIcons from 'lucide-vue-next';
 import { createRouter, createWebHistory } from 'vue-router';
 import ActesPage from './components/ActesPage.vue';
 import FeedbackPage from './components/FeedbackPage.vue';
