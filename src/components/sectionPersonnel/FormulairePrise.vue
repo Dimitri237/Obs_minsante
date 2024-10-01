@@ -43,6 +43,10 @@
     <div class="containerLog" v-if="Enregistrement">
         <form @submit.prevent="createPriseServiceRepriseService" class="form">
             <div v-if="currentPart === 1" class="NewAnim">
+                <div style="width: 100%; display: flex; margin-bottom: 20px; justify-content: space-between">
+                    <i></i>
+                    <i @click="closeWindows" style="background-color: white; font-size: 20px; margin: 0; padding: 0; color: red;" class="fa fa-window-close"></i>
+                </div>
                 <h1 class="title">Fiche de prise de service</h1>
 
                 <div class="headt">
@@ -116,6 +120,10 @@
 
             <!-- Deuxième partie du formulaire -->
             <div v-if="currentPart === 2" class="NewAnim">
+                <div style="width: 100%; display: flex; margin-bottom: 20px; justify-content: space-between">
+                    <i></i>
+                    <i @click="closeWindows" style="background-color: white; font-size: 20px; margin: 0; padding: 0; color: red;" class="fa fa-window-close"></i>
+                </div>
                 <h1 class="title">Fiche de prise de service</h1>
                 <div class="headt">
                     <h1 style="background-color: white; color: #007A5E; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);">1
@@ -218,6 +226,9 @@ export default {
         this.getPriseServiceRepriseService();
     },
     methods: {
+        closeWindows(){
+            this.Enregistrement = false;
+        },
         nextPart() {
             this.currentPart = 2; // Passe à la deuxième partie
         },
@@ -517,7 +528,8 @@ export default {
     justify-content: center;
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    padding: 3% 0;
+    padding: 0;
+    padding-bottom: 3%;
     margin-top: 10%;
 }
 
