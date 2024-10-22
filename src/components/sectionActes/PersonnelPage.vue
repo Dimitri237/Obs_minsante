@@ -52,7 +52,7 @@
             <div class="container">
                 <div style=" display: block" class="row">
                     <div style="margin: auto; text-align: center;" class="col-12">
-                        <h2 class="mb-5 s_titre">Les <span>affectations</span> & <span>nominations</span></h2>
+                        <h2 class="mb-5 s_titre">Les <span>Actes Administratifs</span></h2>
                     </div>
                     <div style="width: 80%; margin: auto;" class="containActs col-lg-4 mb-4 col-12"
                         v-for="acte in actes" v-bind:key="acte.id">
@@ -123,7 +123,9 @@ export default {
     methods: {
         async getActes() {
             try {
-                const response = await axios.get('https://minsante-api-636b67309a26.herokuapp.com/actes');
+                // const response = await axios.get('https://minsante-api-636b67309a26.herokuapp.com/actes');
+                const response = await axios.get('http://localhost:3002/actes')
+
                 this.actes = response.data;
                 console.log(this.actes);
 
@@ -134,7 +136,7 @@ export default {
         },
         showModal(acte) {
             this.selectedActe = acte; // Met à jour l'acte sélectionné
-            
+
         },
         formatDate(dateString) {
             if (!dateString) {

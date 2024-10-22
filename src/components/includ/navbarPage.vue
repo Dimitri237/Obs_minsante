@@ -24,7 +24,7 @@
                     </router-link>
                     <ul class="submenu">
                         <li><a href="#"> <router-link @click="closeMobileMenu" to="/OrganigrammePage">Organigramme du
-                                    MINESANTE</router-link>
+                                    MINSANTE</router-link>
                             </a></li>
                         <li><a href="#"> <router-link @click="closeMobileMenu" to="/StatuGeneral">Statut
                                     general</router-link> </a></li>

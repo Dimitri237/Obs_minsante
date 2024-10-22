@@ -56,13 +56,15 @@ const routes = [
     { path: '/OffresPage', component: OffresPage },
     { path: '/RealisationPage', component: RealisationPage },
 ];
-
+const app = createApp(App);
 const router = createRouter({
     history: createWebHistory(),
     routes
 });
+Object.entries(lucideIcons).forEach(([name, component]) => {
+    app.component(name, component);
+    });
 
-const app = createApp(App);
 app.use(router);
 app.mount('#app');
 

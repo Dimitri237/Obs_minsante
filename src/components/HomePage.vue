@@ -9,71 +9,41 @@
       </div>
     </div>
     <section class="heath" style="margin-top: 120px; display: flex; flex-wrap: wrap; justify-content: space-between;">
-      <div style="" class="containe">
-        <p style="color: rgba(0, 0, 0, 0.9); font-size: 25px;">A la une a la DRH</p>
-        <img
-          src="https://prod.cdn-medias.jeuneafrique.com/cdn-cgi/image/q=auto,f=auto,metadata=none,width=1215,fit=cover,gravity=0.6963x0.2622/https://prod.cdn-medias.jeuneafrique.com/medias/2023/12/05/jad20231205-ass-cameroun-ordre-national-medecins.jpg"
-          class="img-fluid" alt="">
-        <div class="text-overlay">
-          <div class="stext" style="margin: 35px auto;">
-            <h1 class="slick-title">ESPLANADE DU MUSÉE NATIONAL PRESENTATION</h1>
-            <p class="lead text-white mt-lg-3 mb-lg-5">LE DR MANAOUDA MALACHIE, AUTEUR DE SOLIDARITÉ INTERNATIONALE ET
-              DEVOIR DE PAIX, AINSI QUE DE LES 200 PLUS BELLES CITATIONS DE PAUL BIYA, UNE PROCÈDE...</p>
-            <a href="product.html" class="btn custom-btn">En savoir plus</a>
+      <div class="carousel">
+        <div class="carousel-images" :style="{ transform: 'translateX(' + (-currentIndex * 100) + '%)' }">
+          <div class="carousel-image" v-for="(image, index) in images" :key="index">
+            <img :src="image.src" :alt="image.alt">
           </div>
         </div>
+        <div class="carousel-controls">
+          <button class="control-btn" @click="prevImage">❮</button>
+          <button class="control-btn" @click="nextImage">❯</button>
+        </div>
       </div>
-      <div class="cont">
-        <p class="tlt" style="color: rgba(0, 0, 0, 0.9); font-size: 25px;">Se connecter</p>
-        <form action="">
-          <div class="inp-f">
-            <label for="">Compte</label>
-            <input type="text">
-          </div>
-          <div class="inp-f">
-            <label for="">Mot de passe</label>
-            <input type="text">
-          </div>
-          <input class="btns" type="submit" value="Connexion">
-          <div class="inp-f0">
-            <input type="radio">
-            <label>Se souvenir de mes paramètres</label>
-          </div>
-        </form>
-      </div>
+
     </section>
     <section class="s_menu" style="margin: 200px 0; display: flex; justify-content: space-between; width: 100%;">
       <div class="current">
-        <h1>Personnel</h1>
-        <section style=" height: 100%; width: 100%;">
-          <button
-            style="border: none; background: transparent; color: #007A5E; font-size: 20px; margin-top: 250px!important; margin: auto; width: 100%;">En
-            savoir plus</button>
-        </section>
+        <h1>AFFECTATIONS</h1>
+        <button @click="route1" class="route">En
+          savoir plus</button>
       </div>
       <div class="current">
-        <h1>Solde</h1>
-        <section style="height: 100%; width: 100%;">
-          <button
-            style="border: none; background: transparent; color: #007A5E; font-size: 20px; margin-top: 250px!important; margin: auto; width: 100%;">En
-            savoir plus</button>
-        </section>
+        <h1>ACTES</h1>
+        <button @click="route2" class="route">En
+          savoir plus</button>
       </div>
       <div class="current">
         <h1>Concours</h1>
-        <section style="height: 100%; width: 100%;">
-          <button
-            style="border: none; background: transparent; color: #007A5E; font-size: 20px; margin-top: 250px!important; margin: auto; width: 100%;">En
-            savoir plus</button>
-        </section>
+        <button @click="route3" class="route">En
+          savoir plus</button>
       </div>
       <div class="current">
         <h1>Aquarium</h1>
-        <section style="height: 100%; width: 100%;">
-          <button
-            style="border: none; background: transparent; color: #007A5E; font-size: 20px; margin-top: 250px!important; margin: auto; width: 100%;">En
-            savoir plus</button>
-        </section>
+        <button @click="route4" class="route">
+          <a href="https://dossier.minsante.cm/" style="color: white;">En
+            savoir plus</a>
+        </button>
       </div>
     </section>
     <section class="front-product" style="margin: 200px 0; display: flex; justify-content: space-between; width: 100%;">
@@ -211,6 +181,35 @@
 <script>
 export default {
   name: 'HelloWorld',
+  mounted() {
+    setInterval(this.nextImage, 5000); // Auto slide every 5 seconds
+  },
+  data() {
+    return {
+      currentIndex: 0,
+      images: [
+        { src: 'https://prod.cdn-medias.jeuneafrique.com/medias/2023/12/05/jad20231205-ass-cameroun-ordre-national-medecins.jpg', alt: 'Image 1' },
+        { src: 'https://img.freepik.com/free-photo/medium-shot-doctor-using-disinfectant_23-2148814238.jpg?t=st=1729534657~exp=1729538257~hmac=4f1e6ba8b61717151d225ef9375b71db1faf1e329a95fe0f736ecabe74920274&w=1380', alt: 'Image 2' },
+        { src: 'https://img.freepik.com/free-photo/africa-humanitarian-aid-doctor-taking-care-patient_23-2149117843.jpg?ga=GA1.1.712142728.1726075882&semt=ais_hybrid', alt: 'Image 3' },
+
+      ]
+    }
+  },
+  methods: {
+    route1() { 
+      // this.$router.push('/acceuilPage'); 
+      alert('Page non disponible')
+    },
+    route2() { this.$router.push('/PersonnelPage'); },
+    route3() { this.$router.push('/OffresPage2'); },
+    // route4(){ this.$router.push('https://dossier.minsante.cm/'); },
+    nextImage() {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    },
+    prevImage() {
+      this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+    }
+  },
   props: {
     msg: String
   }
@@ -219,6 +218,56 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.route {
+  margin-left: 15%;
+  margin-top: 70%;
+  color: white;
+  border: none;
+  background-color: #007A5E;
+  padding: 10px;
+  width: 70%;
+}
+
+.carousel {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel img {
+  width: 100%;
+  height: 90vh;
+}
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.control-btn {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 .slick-custom {
   width: 100%;
 }
@@ -345,6 +394,10 @@ form {
 
 }
 
+.current h1 {
+  text-align: center;
+}
+
 .s_menu h1 {
   background-color: #007A5E;
   font-size: 25px;
@@ -354,12 +407,14 @@ form {
   padding-left: 10px;
   font-weight: 400;
 }
+
 .heath .cont {
-    width: 35%;
-  }
-  .heath .containe {
-    width: 65%;
-  }
+  width: 35%;
+}
+
+.heath .containe {
+  width: 100%;
+}
 
 .respond {
   display: none;
@@ -367,15 +422,17 @@ form {
 
 @media (max-width: 680px) {
   .inp-f0 label {
-  color: white;
-  margin-left: 10px;
-  font-family: Montserrat, sans-serif;
-  font-size: 13px;
-  
-}
-.inp-f0{
+    color: white;
+    margin-left: 10px;
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+
+  }
+
+  .inp-f0 {
     width: 70%;
   }
+
   .respond {
     margin-top: 100px;
     display: block;
@@ -384,6 +441,7 @@ form {
   .s_menu {
     display: block !important;
   }
+
   .s_menu h1 {
     font-size: 15px;
   }

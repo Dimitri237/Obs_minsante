@@ -53,7 +53,7 @@
                 <div style=" display: block" class="row">
 
                     <div style="margin: auto; text-align: center;" class="col-12">
-                        <h2 class="mb-5 s_titre">Les <span>affectations</span> & <span>nominations</span></h2>
+                        <h2 class="mb-5 s_titre">Les <span>Actes Administratifs</span></h2>
                     </div>
                     <div style="width: 80%; margin: auto;" class="col-lg-4 mb-4 col-12" v-for="acte in filteredActs"
                         v-bind:key="acte.id">

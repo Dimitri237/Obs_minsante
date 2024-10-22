@@ -6,7 +6,7 @@
 
                     <div class="col-lg-6 col-12 header-info">
                         <h1 class="titre">
-                            <span class="d-block text-dark ">Formulaire de prise de <span
+                            <span class="d-block text-dark ">Fiche de prise de <span
                                     class="text-primary">Service</span></span>
                         </h1>
                     </div>
@@ -17,25 +17,29 @@
             style="width: 100%; margin-bottom: 150px; padding: 30px; margin-top: 50px; background-color: rgba(0, 0, 0, 0.1);"
             class="team format ">
             <div class="search">
-                <input placeholder="Entre votre matricule / Nom" type="text" name="" id=""><button
-                    @click="enregistrerPrise" class="prise">Prendre
+                <div style="width: 100%;">
+                    <input placeholder="Entre votre numero de fiche" v-model="searchTerm" type="text" name="" id=""
+                    class="rechercheFiche">
+                <button @click="searchFiche" class="prise2">recherche</button>
+                </div>
+                <button @click="enregistrerPrise" class="prise">Prendre
                     Service</button>
             </div>
-            <div class="insideAllA">
-                <div v-for="priseService in priseServices" v-bind:key="priseService.id" class="insideAll">
-                    <h3><i class="fa fa-user"></i>{{ priseService.nom_prenom }}</h3>
-                    <h3>{{ priseService.sex }}</h3>
-                    <h3>{{ priseService.specialite }}</h3>
-                    <h3>{{ priseService.grade }}</h3>
+            <div v-if="fiches.length > 0" class="insideAllA animate__animated animate__fadeInDown">
+                <router-link v-for="fiche in fiches" v-bind:key="fiche.id"
+                    class="insideAll animate__animated animate__fadeInDown">
+                    <h3><i class="fa fa-user"></i>{{ fiche.nom_prenom }}</h3>
+                    <h3>{{ fiche.sex }}</h3>
+                    <h3>{{ fiche.specialite }}</h3>
+                    <h3>{{ fiche.grade }}</h3>
                     <button :style="{
-                        backgroundColor: priseService.status === 'Approuvé' ? '#007A5E' :
-                            priseService.status === 'Rejeté' ? 'red' :
+                        backgroundColor: fiche.status === 'Approuvé' ? '#007A5E' :
+                            fiche.status === 'Rejeté' ? 'red' :
                                 'rgba(0, 0, 0, 0.3)'
                     }">
-                        {{ priseService.status }}
+                        {{ fiche.status }}
                     </button>
-                </div>
-                <!-- <h4>Cette requete a ete envoyé le 25-09-2024</h4> -->
+                </router-link>
             </div>
         </section>
     </main>
@@ -45,7 +49,9 @@
             <div v-if="currentPart === 1" class="NewAnim">
                 <div style="width: 100%; display: flex; margin-bottom: 20px; justify-content: space-between">
                     <i></i>
-                    <i @click="closeWindows" style="background-color: white; font-size: 20px; margin: 0; padding: 0; color: red;" class="fa fa-window-close"></i>
+                    <i @click="closeWindows"
+                        style="background-color: white; font-size: 20px; margin: 0; padding: 0; color: red;"
+                        class="fa fa-window-close"></i>
                 </div>
                 <h1 class="title">Fiche de prise de service</h1>
 
@@ -56,9 +62,11 @@
                     </h1>
                 </div>
                 <div class="group">
+                </div>
+                <div class="group">
                     <div class="form-group">
                         <label for="id_perso" class="label">N° Matricule / Service N°</label>
-                        <input type="text" placeholder="N° Matricule / Service N°" id="id_perso"
+                        <input type="text" placeholder="Optionel" id="id_perso"
                             v-model="priseServiceRepriseService.id_perso" class="input" />
                     </div>
                     <div class="form-group">
@@ -122,9 +130,11 @@
             <div v-if="currentPart === 2" class="NewAnim">
                 <div style="width: 100%; display: flex; margin-bottom: 20px; justify-content: space-between">
                     <i></i>
-                    <i @click="closeWindows" style="background-color: white; font-size: 20px; margin: 0; padding: 0; color: red;" class="fa fa-window-close"></i>
+                    <i @click="closeWindows"
+                        style="background-color: white; font-size: 20px; margin: 0; padding: 0; color: red;"
+                        class="fa fa-window-close"></i>
                 </div>
-                <h1 class="title">Fiche de prise de service</h1>
+                <h1 class="title">Formulaire de prise de service</h1>
                 <div class="headt">
                     <h1 style="background-color: white; color: #007A5E; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);">1
                     </h1>
@@ -169,8 +179,8 @@
                 </div>
                 <div class="group">
                     <div class="form-group">
-                        <label for="justificatif" class="label">Justificatif:</label>
-                        <input type="text" id="justificatif" v-model="priseServiceRepriseService.justificatif"
+                        <label for="justificatif" class="label">N°:</label>
+                        <input type="text" id="justificatif" v-model="priseServiceRepriseService.numero" disabled
                             class="input" />
                     </div>
                 </div>
@@ -200,11 +210,15 @@ import 'jspdf-autotable'; // Assurez-vous d'installer cette dépendance
 export default {
     data() {
         return {
+            fiches: [],
+            searchTerm: '',
             Enregistrement: false,
             currentPart: 1,
             priseServiceRepriseService: {
+                numero: this.generateNumero(),
                 id_perso: '',
                 nom_prenom: '',
+                option: 'prise',
                 sex: '',
                 situation_matri: '',
                 region_origine: '',
@@ -226,7 +240,12 @@ export default {
         this.getPriseServiceRepriseService();
     },
     methods: {
-        closeWindows(){
+        generateNumero() {
+            const chiffres = Math.floor(1000 + Math.random() * 9000); // 4 chiffres
+            const lettre = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Lettre A-Z
+            return `${chiffres}${lettre}`; // Format final
+        },
+        closeWindows() {
             this.Enregistrement = false;
         },
         nextPart() {
@@ -258,7 +277,8 @@ export default {
                 return;
             }
             this.loading = true;
-            axios.post('https://minsante-api-636b67309a26.herokuapp.com/priseService_repriseService', this.priseServiceRepriseService)
+            // axios.post('https://minsante-api-636b67309a26.herokuapp.com/priseService_repriseService', this.priseServiceRepriseService)
+            axios.post('http://localhost:3002/priseService_repriseService', this.priseServiceRepriseService)
                 .then(response => {
                     console.log(response);
                     alert('Prise Service Reprise Service créée avec succès!');
@@ -377,7 +397,17 @@ export default {
             doc.text('photo 4*4', 152, footerY + 10);
             doc.text('OBS-MINSANTE', (doc.internal.pageSize.getWidth() / 2), footerY + 60, { align: 'center' }); // Centré
         },
-
+        async searchFiche() {
+            try {
+                const response = await fetch(`http://localhost:3002/prise-search?q=${encodeURIComponent(this.searchTerm)}`)
+                const data = await response.json()
+                this.fiches = data;
+                this.message = data.length === 0 ? 'Aucun résultat trouvé.' : ''
+            } catch (error) {
+                console.error('Erreur lors de la recherche de la fiche :', error)
+                this.message = 'Une erreur est survenue lors de la recherche de la fiche.'
+            }
+        },
         downloadPdf(doc) {
             const pdfBlob = doc.output('blob');
             const url = URL.createObjectURL(pdfBlob);
@@ -390,6 +420,12 @@ export default {
 };
 </script>
 <style scoped>
+.rechercheFiche {
+    background-color: transparent;
+    border: 1px solid #007A5E !important;
+    padding: 20px !important;
+}
+
 .headt {
     display: flex;
     justify-content: space-between;
@@ -498,7 +534,14 @@ export default {
     padding: 10px;
     width: 11%;
 }
-
+.search .prise2 {
+    background-color: #007A5E;
+    font-size: 17px;
+    color: white;
+    border: none;
+    padding: 8.5px;
+    width: 11%;
+}
 .insideAllA:hover {
     background-color: #f1f1f1;
 }
@@ -530,7 +573,7 @@ export default {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     padding: 0;
     padding-bottom: 3%;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .group {
